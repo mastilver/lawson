@@ -1,7 +1,4 @@
 import test from 'ava';
-import pify from 'pify';
-
-import {bucket} from './fixtures/orm';
 
 import user from './fixtures/models/user';
 

@@ -26,7 +26,6 @@ test('update an item', async t => {
 });
 
 test('should not change original object', async t => {
-
     const {id} = await user.create({
         username: 'user',
         password: 'pass',
