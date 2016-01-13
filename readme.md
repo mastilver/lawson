@@ -81,22 +81,83 @@ user.create({
 
 ## API
 
-### lawson(input, [options])
+### lawsonInstance = lawson(couchbaseBucket)
 
-#### input
+Create a new instance of lawson
+
+#### couchbaseBucket
+
+Type: `Bucket`  
+*required*
+
+The bucket the library is storing documents
+
+### model = lawsonInstance.defineModel(modelName, modelDefinition)
+
+Define a new model
+
+#### modelName
+
+Type: `string`  
+*required*
+
+the type of the document
+
+#### modelDefinition
+
+Type: `object`
+*required*
+
+the structure the document is following
+
+### model.get(documentId)
+
+Returns a Promise, that resolve to the requested document
+
+#### documentId
+
+Type: `string`  
+*required*
+
+### model.update(documentId, document)
+
+Returns a Promise, that resolve when the document is updated
+
+#### documentId
 
 Type: `string`
+*required*
 
-Lorem ipsum.
+the id of the document to update
 
-#### options
+#### document
 
-##### foo
+Type: `object`
+*required*
 
-Type: `boolean`  
-Default: `false`
+the new version of the document that will be updated
 
-Lorem ipsum.
+### model.create(document)
+
+Returns a Promise, that resolve to the created document
+
+#### document
+
+Type: `object`
+*required*
+
+The document that will be created
+
+### model.delete(documentId)
+
+Returns a Promise when the document is deleted
+
+#### documentId
+
+Type: `string`
+*required*
+
+The id of the document that will be deleted
 
 
 ## License
