@@ -1,0 +1,57 @@
+{
+  "name": "lawson",
+  "version": "0.0.0",
+  "description": "yet another couchbase orm",
+  "license": "MIT",
+  "repository": "mastilver/lawson",
+  "author": {
+    "name": "Thomas Sileghem",
+    "email": "tsileghem@neworbit.co.uk",
+    "url": "mastilver.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava",
+    "prebuild": "rimraf build",
+    "build": "babel lib --out-dir dist",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "keywords": [
+    "couchbase",
+    "couchnode",
+    "couchdb",
+    "lawson",
+    "nosql",
+    "ottoman",
+    "orm",
+    "database",
+    "db"
+  ],
+  "dependencies": {
+    "babel-polyfill": "^6.3.14",
+    "cuid": "^1.3.8",
+    "pify": "^2.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.9.1",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-3": "^6.3.13",
+    "couchbase": "^2.1.3",
+    "rimraf": "^2.5.0",
+    "xo": "^0.12.1"
+  },
+  "xo": {
+    "space": 4
+  },
+  "ava": {
+    "require": "babel-core/register"
+  }
+}
