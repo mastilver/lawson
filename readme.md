@@ -159,6 +159,10 @@ Type: `string`
 
 The id of the document that will be deleted
 
+### model.query()
+
+Returns a Promise, that resolve to all the documents
+
 
 ## License
 
