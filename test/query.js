@@ -24,3 +24,26 @@ test('querying all document', async t => {
     t.is('user-1', users[0].username);
     t.is('user-2', users[1].username);
 });
+
+test('querying using a where clause', async t => {
+    const users = await user.query({
+        where: {
+            username: 'user-1'
+        }
+    });
+
+    t.is(1, users.length);
+
+    t.is('user-1', users[0].username);
+});
+
+test('querying using several where clause', async t => {
+    const users = await user.query({
+        where: {
+            username: 'user-1',
+            email: 'user-2@test.com'
+        }
+    });
+
+    t.is(0, users.length);
+});

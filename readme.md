@@ -61,7 +61,7 @@ user.create({
     console.log('user updated');
 })
 .then(() => {
-    return user.findAll({
+    return user.query({
         where: {
             username: 'bobby'
         }
@@ -159,10 +159,15 @@ Type: `string`
 
 The id of the document that will be deleted
 
-### model.query()
+### model.query(options)
 
 Returns a Promise, that resolve to all the documents
 
+#### options.where
+
+Type: `object`
+
+Used to filter out results of the query
 
 ## License
 
