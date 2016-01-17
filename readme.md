@@ -169,6 +169,20 @@ Type: `object`
 
 Used to filter out results of the query
 
+#### options.limit
+
+Type: `number`
+
+The number of documents to return
+
+#### options.offset
+
+Type: `number`  
+default: 0
+
+The number of documents to skip
+
+
 ## License
 
 MIT © [Thomas Sileghem](http://mastilver.com)
