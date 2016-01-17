@@ -6,13 +6,15 @@ test.before(async () => {
     await user.create({
         username: 'user-1',
         password: 'secret',
-        email: 'user-1@test.com'
+        email: 'user-1@test.com',
+        nbFollowers: 4
     });
 
     await user.create({
         username: 'user-2',
         password: 'secret',
-        email: 'user-2@test.com'
+        email: 'user-2@test.com',
+        nbFollowers: 2
     });
 });
 
@@ -46,4 +48,16 @@ test('querying using several where clause', async t => {
     });
 
     t.is(0, users.length);
+});
+
+test('querying using a number', async t => {
+    const users = await user.query({
+        where: {
+            nbFollowers: 4
+        }
+    });
+
+    t.is(1, users.length);
+
+    t.is('user-1', users[0].username);
 });
