@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "xo && ava --require babel-core/register",
-    "prebuild": "rimraf build",
+    "prebuild": "rimraf dist",
     "build": "babel lib --out-dir dist",
     "prepublish": "npm run build"
   },
