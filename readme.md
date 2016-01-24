@@ -29,7 +29,7 @@ export const model = lawsonInstance.defineModel;
 ```js
 import {model} from '../orm';
 
-export const default = model('user', {
+export default model('user', {
     username: 'string',
     email: 'string',
     password: 'string'
