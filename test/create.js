@@ -47,3 +47,9 @@ test('should be inserted in the database', async t => {
     t.is('test@test.com', createdUser.email);
     t.is('user', createdUser.type);
 });
+
+test('create an item which doesn\'t match the schema', t => {
+    t.throws(user.create({
+        username: 'user'
+    }), TypeError);
+});

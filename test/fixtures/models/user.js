@@ -4,5 +4,5 @@ export default model('user', {
     username: 'string',
     email: 'string',
     password: 'string',
-    nbFollowers: 'number'
+    nbFollowers: 'number?'
 });

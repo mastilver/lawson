@@ -13,6 +13,7 @@ test('update an item', async t => {
     });
 
     const updatedUser = await user.update(id, {
+        id,
         username: 'user-updated',
         password: 'pass-updated',
         email: 'test-updated@test.com'
@@ -63,4 +64,16 @@ test('should be inserted in the database', async t => {
     t.is('pass-updated', updatedUser.password);
     t.is('test-updated@test.com', updatedUser.email);
     t.is('user', updatedUser.type);
+});
+
+test('update an item which doesn\'t match the schema', async t => {
+    const {id} = await user.create({
+        username: 'user',
+        password: 'pass',
+        email: 'test@test.com'
+    });
+
+    t.throws(user.update(id, {
+        username: 'user-updated'
+    }));
 });

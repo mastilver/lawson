@@ -108,7 +108,7 @@ the type of the document
 Type: `object`
 *required*
 
-the structure the document is following
+The schema of the document, see its definition [here](https://github.com/mastilver/db-schema-validator#schema-definition)
 
 ### model.get(documentId)
 
