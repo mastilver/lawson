@@ -183,6 +183,14 @@ default: 0
 The number of documents to skip
 
 
+## Difference between lawson and [ottoman](https://github.com/couchbaselabs/node-ottoman)
+
+|                       | Lawson        | Ottoman       |
+| :-------------------- | :-----------: | :-----------: |
+| Mock-able             |      Yes      |      No       |
+| Use S1-Ql (faster)    |   *planned*   |      Yes      |
+
+
 ## License
 
 MIT © [Thomas Sileghem](http://mastilver.com)
