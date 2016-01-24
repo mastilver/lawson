@@ -1,6 +1,6 @@
 # lawson [![Build Status](https://travis-ci.org/mastilver/lawson.svg?branch=master)](https://travis-ci.org/mastilver/lawson)
 
-> Yet another [Couchbase](http://www.couchbase.com/) Orm
+> Yet another [Couchbase](http://www.couchbase.com/) Odm
 
 
 ## Install

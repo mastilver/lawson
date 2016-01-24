@@ -1,12 +1,12 @@
 {
   "name": "lawson",
   "version": "1.0.0",
-  "description": "yet another couchbase orm",
+  "description": "yet another couchbase odm",
   "license": "MIT",
   "repository": "mastilver/lawson",
   "author": {
     "name": "Thomas Sileghem",
-    "email": "tsileghem@neworbit.co.uk",
+    "email": "th.sileghem@gmail.com",
     "url": "mastilver.com"
   },
   "engines": {
@@ -31,7 +31,8 @@
     "ottoman",
     "orm",
     "database",
-    "db"
+    "db",
+    "odm"
   ],
   "dependencies": {
     "babel-polyfill": "^6.3.14",
