@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "xo && ava --require babel-core/register --require babel-polyfill",
+    "test": "xo && ava",
     "prebuild": "rimraf dist",
     "build": "babel lib --out-dir dist",
     "prepublish": "npm run build"
