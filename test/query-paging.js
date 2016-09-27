@@ -5,9 +5,9 @@ import user from './fixtures/models/user';
 test.before(async () => {
     for (let i = 0, len = 100; i < len; i++) {
         await user.create({
-            username: `user-${ i }`,
+            username: `user-${i}`,
             password: 'secret',
-            email: `user-${ i }@test.com`
+            email: `user-${i}@test.com`
         });
     }
 });

@@ -17,7 +17,7 @@ test('create an item', async t => {
     t.is('test@test.com', createdUser.email);
     t.is('user', createdUser.type);
 
-    t.ok(typeof createdUser.id === 'string');
+    t.true(typeof createdUser.id === 'string');
 });
 
 test('should not change original object', async t => {
