@@ -1,6 +1,6 @@
 {
   "name": "lawson",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "yet another couchbase odm",
   "license": "MIT",
   "repository": "mastilver/lawson",
