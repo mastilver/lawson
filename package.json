@@ -51,7 +51,14 @@
     "xo": "^0.16.0"
   },
   "xo": {
-    "space": 4
+    "space": 4,
+    "rules": {
+      "no-eq-null": 0,
+      "eqeqeq": [
+        2,
+        "smart"
+      ]
+    }
   },
   "ava": {
     "require": [
