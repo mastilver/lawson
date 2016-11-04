@@ -182,13 +182,33 @@ default: 0
 
 The number of documents to skip
 
+### model.first(where)
+
+Like query(), but return a promise for only one document
+
+#### where
+
+Type: `object`
+
+Used to filter out results of the query
+
+### model.single(where)
+
+Like first(), but throws an error if there is more that one document that matches the where clause
+
+#### where
+
+Type: `object`
+
+Used to filter out results of the query
+
 
 ## Difference between lawson and [ottoman](https://github.com/couchbaselabs/node-ottoman)
 
 |                       | Lawson        | Ottoman       |
 | :-------------------- | :-----------: | :-----------: |
 | Mock-able             |      Yes      |      No       |
-| Use S1-Ql (faster)    |   *planned*   |      Yes      |
+| Use N1-Ql (faster)    |      No       |      Yes      |
 
 
 ## License
