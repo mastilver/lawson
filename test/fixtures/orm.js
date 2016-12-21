@@ -1,7 +1,6 @@
-import {Mock as couchbase} from 'couchbase';
+import noSqwal from 'nosqwal-memory';
 import lawson from '../../lib/index';
 
-const cluster = new couchbase.Cluster();
+const noSqwalInstance = noSqwal();
 
-export const bucket = cluster.openBucket();
-export const model = lawson(bucket).defineModel;
+export const collection = lawson(noSqwalInstance).defineCollection;

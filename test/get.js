@@ -15,5 +15,4 @@ test('insert item', async t => {
     t.is('user', createdUser.username);
     t.is('pass', createdUser.password);
     t.is('test@test.com', createdUser.email);
-    t.is('user', createdUser.type);
 });

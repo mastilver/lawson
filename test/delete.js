@@ -1,7 +1,4 @@
 import test from 'ava';
-import pify from 'pify';
-
-import {bucket} from './fixtures/orm';
 
 import user from './fixtures/models/user';
 
@@ -13,5 +10,5 @@ test('should delete item', async t => {
     });
 
     await user.delete(id);
-    t.throws(pify(bucket.get.bind(bucket))(id));
+    await t.throws(user.get(id));
 });

@@ -1,7 +1,4 @@
 import test from 'ava';
-import pify from 'pify';
-
-import {bucket} from './fixtures/orm';
 
 import user from './fixtures/models/user';
 
@@ -15,7 +12,6 @@ test('create an item', async t => {
     t.is('user', createdUser.username);
     t.is('pass', createdUser.password);
     t.is('test@test.com', createdUser.email);
-    t.is('user', createdUser.type);
 
     t.true(typeof createdUser.id === 'string');
 });
@@ -39,13 +35,12 @@ test('should be inserted in the database', async t => {
         email: 'test@test.com'
     });
 
-    const {value: createdUser} = await pify(bucket.get.bind(bucket))(id);
+    const createdUser = await user.get(id);
 
     t.is(id, createdUser.id);
     t.is('user', createdUser.username);
     t.is('pass', createdUser.password);
     t.is('test@test.com', createdUser.email);
-    t.is('user', createdUser.type);
 });
 
 test('create an item which doesn\'t match the schema', t => {

@@ -1,6 +1,6 @@
-import {model} from '../orm';
+import {collection} from '../orm';
 
-export default model('user', {
+export default collection('user', {
     username: 'string',
     email: 'string',
     password: 'string',

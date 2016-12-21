@@ -47,5 +47,5 @@ test('when there is several ducuments to match', async t => {
         nbFollowers: 4
     });
 
-    t.is('user-1', user.username);
+    t.truthy(['user-1', 'user-3'].includes(user.username));
 });

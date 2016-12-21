@@ -1,12 +1,12 @@
 # lawson [![Build Status](https://travis-ci.org/mastilver/lawson.svg?branch=master)](https://travis-ci.org/mastilver/lawson)
 
-> Yet another [Couchbase](http://www.couchbase.com/) Odm
+> Database agnostic ODM
 
 
 ## Install
 
 ```
-$ npm install --save lawson
+$ npm install --save lawson nosqwal-memory
 ```
 
 
@@ -14,22 +14,19 @@ $ npm install --save lawson
 
 `orm.js`
 ```js
-import couchbase from 'couchbase';
+import nosqwal from 'nosqwal-memory';
 import lawson from 'lawson';
 
-const cluster = new couchbase.Cluster();
-const bucket = cluster.openBucket();
+const noSqwalInstance = noSqwal();
 
-const lawsonInstance = lawson(bucket);
-
-export const model = lawsonInstance.defineModel;
+export const collection = lawson(noSqwalInstance).defineCollection;
 ```
 
 `models/user.js`
 ```js
-import {model} from '../orm';
+import {collection} from '../orm';
 
-export default model('user', {
+export default collection('user', {
     username: 'string',
     email: 'string',
     password: 'string'
@@ -81,27 +78,25 @@ user.create({
 
 ## API
 
-### lawsonInstance = lawson(couchbaseBucket)
+### lawsonInstance = lawson(noSqwalInstance)
 
 Create a new instance of lawson
 
-#### couchbaseBucket
+#### noSqwalInstance
 
-Type: `Bucket`  
+Type: [Nosqwal instance](https://github.com/mastilver/nosqwal)  
 *required*
 
-The bucket the library is storing documents
+### collection = lawsonInstance.defineCollection(collectionName, modelDefinition)
 
-### model = lawsonInstance.defineModel(modelName, modelDefinition)
+Define a new collection
 
-Define a new model
-
-#### modelName
+#### collectionName
 
 Type: `string`  
 *required*
 
-the type of the document
+the name of the collection
 
 #### modelDefinition
 
@@ -110,7 +105,7 @@ Type: `object`
 
 The schema of the document, see its definition [here](https://github.com/mastilver/db-schema-validator#schema-definition)
 
-### model.get(documentId)
+### collection.get(documentId)
 
 Returns a Promise, that resolve to the requested document
 
@@ -119,16 +114,9 @@ Returns a Promise, that resolve to the requested document
 Type: `string`  
 *required*
 
-### model.update(documentId, document)
+### collection.update(document)
 
 Returns a Promise, that resolve when the document is updated
-
-#### documentId
-
-Type: `string`
-*required*
-
-the id of the document to update
 
 #### document
 
@@ -137,7 +125,14 @@ Type: `object`
 
 the new version of the document that will be updated
 
-### model.create(document)
+##### document.id
+
+Type: `string`
+*required*
+
+the id of the document to update
+
+### collection.create(document)
 
 Returns a Promise, that resolve to the created document
 
@@ -148,7 +143,7 @@ Type: `object`
 
 The document that will be created
 
-### model.delete(documentId)
+### collection.delete(documentId)
 
 Returns a Promise when the document is deleted
 
@@ -159,7 +154,7 @@ Type: `string`
 
 The id of the document that will be deleted
 
-### model.query(options)
+### collection.query(options)
 
 Returns a Promise, that resolve to all the documents
 
@@ -182,7 +177,7 @@ default: 0
 
 The number of documents to skip
 
-### model.first(where)
+### collection.first(where)
 
 Like query(), but return a promise for only one document
 
@@ -192,7 +187,7 @@ Type: `object`
 
 Used to filter out results of the query
 
-### model.single(where)
+### collection.single(where)
 
 Like first(), but throws an error if there is more that one document that matches the where clause
 
@@ -201,15 +196,6 @@ Like first(), but throws an error if there is more that one document that matche
 Type: `object`
 
 Used to filter out results of the query
-
-
-## Difference between lawson and [ottoman](https://github.com/couchbaselabs/node-ottoman)
-
-|                       | Lawson        | Ottoman       |
-| :-------------------- | :-----------: | :-----------: |
-| Mock-able             |      Yes      |      No       |
-| Use N1-Ql (faster)    |      No       |      Yes      |
-
 
 ## License
 

@@ -1,7 +1,4 @@
 import test from 'ava';
-import pify from 'pify';
-
-import {bucket} from './fixtures/orm';
 
 import user from './fixtures/models/user';
 
@@ -12,7 +9,7 @@ test('update an item', async t => {
         email: 'test@test.com'
     });
 
-    const updatedUser = await user.update(id, {
+    const updatedUser = await user.update({
         id,
         username: 'user-updated',
         password: 'pass-updated',
@@ -20,7 +17,6 @@ test('update an item', async t => {
     });
 
     t.is(id, updatedUser.id);
-    t.is('user', updatedUser.type);
     t.is(updatedUser.username, 'user-updated');
     t.is(updatedUser.password, 'pass-updated');
     t.is(updatedUser.email, 'test-updated@test.com');
@@ -34,14 +30,15 @@ test('should not change original object', async t => {
     });
 
     const originalObject = {
+        id,
         username: 'user',
         password: 'pass',
         email: 'test@test.com'
     };
 
-    await user.update(id, originalObject);
+    await user.update(originalObject);
 
-    t.is(3, Object.keys(originalObject).length);
+    t.is(4, Object.keys(originalObject).length);
 });
 
 test('should be inserted in the database', async t => {
@@ -51,19 +48,19 @@ test('should be inserted in the database', async t => {
         email: 'test@test.com'
     });
 
-    await user.update(id, {
+    await user.update({
+        id,
         username: 'user-updated',
         password: 'pass-updated',
         email: 'test-updated@test.com'
     });
 
-    const {value: updatedUser} = await pify(bucket.get.bind(bucket))(id);
+    const updatedUser = await user.get(id);
 
     t.is(id, updatedUser.id);
     t.is('user-updated', updatedUser.username);
     t.is('pass-updated', updatedUser.password);
     t.is('test-updated@test.com', updatedUser.email);
-    t.is('user', updatedUser.type);
 });
 
 test('update an item which doesn\'t match the schema', async t => {
@@ -73,7 +70,8 @@ test('update an item which doesn\'t match the schema', async t => {
         email: 'test@test.com'
     });
 
-    t.throws(user.update(id, {
+    t.throws(user.update({
+        id,
         username: 'user-updated'
     }));
 });
